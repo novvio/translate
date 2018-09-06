@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Chrome Extension for Apple</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="main.css">
+  <script src="js/vue.min.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <textarea class="text-area" v-model="input" name="input" id="input" cols="30" rows="10" placeholder="enter something"></textarea>
+    <a class="btn" href="#" @click="translate" v-if="show">Done</a>
+
+    <div  class="langs" v-if="show" v-for="lang in languages">
+
+      <label class="lbl-lang">
+        <input type="checkbox" v-model="selectedLangs" :value="lang.value">
+        <span> {{ lang.name }} </span>
+      </label>
+    </div>
+
+
+    <div class="results">
+      <div class="result" @click="copy(result.lang)" v-for="result in results">
+
+        <div class="descs" :id="result.lang">
+          <div v-for="desc in result.desc">{{ desc }}</div>
+        </div>
+        <div class="result__lang">{{result.lang}}</div>
+      </div>
+    </div>
+  </div>
+  <script src="js/axios.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
